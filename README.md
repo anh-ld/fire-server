@@ -1,6 +1,6 @@
 ## Simple REST server using Firestore
 
-[Sample Server](https://us-central1-firecast-9b264.cloudfunctions.net/api/players)
+[Sample Server](https://us-central1-firecast-9b264.cloudfunctions.net/api/)
 
 ### Route
 

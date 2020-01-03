@@ -22,9 +22,12 @@
 
  3. Move it into this folder
 
-> functions
+> functions/src
 
  4. Run command
 
->     cd functions
->     npm run populate
+```
+cd functions
+npm run build
+npm run populate
+```

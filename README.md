@@ -1,4 +1,4 @@
-## Simple REST server using Firestore
+## Simple REST server using Firebase Functions and Firestore
 
 [Sample Server](https://us-central1-firecast-9b264.cloudfunctions.net/api/)
 

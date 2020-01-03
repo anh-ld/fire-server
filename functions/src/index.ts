@@ -1,7 +1,7 @@
-const functions = require('firebase-functions')
-const express = require('express')
-const cors = require('cors')
-const {getPlayers, getPlayer, addPlayer, updatePlayer, deletePlayer, home} = require('./handle')
+import * as functions from 'firebase-functions'
+import express from 'express'
+import cors from 'cors'
+import {getPlayers, getPlayer, addPlayer, updatePlayer, deletePlayer, home} from './handle'
 
 const app = express()
 app.set('view engine', 'pug')

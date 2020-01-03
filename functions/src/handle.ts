@@ -1,18 +1,18 @@
 /* eslint-disable consistent-return */
-const { db } = require("./initialize")
-const batch = db.batch()
-const nanoid = require("nanoid")
+import nanoid from 'nanoid'
+import {db} from './initialize'
+import {Request, Response} from 'express'
 
-exports.home = (req, res) => {
+export const home = (req: Request, res: Response) => {
     return res.render('index')
 }
 
-exports.getPlayers = async (req, res) => {
-    let players = []
+export const getPlayers = async (req: Request, res: Response) => {
+    let players: any = []
 
     try {
         const r = await db.collection("nba_salary").get()
-        const promises = r.docs.map(async doc => {
+        const promises = r.docs.map(async (doc: any) => {
             doc = await doc.data()
             players = [...players, doc]
         })
@@ -25,7 +25,7 @@ exports.getPlayers = async (req, res) => {
     }
 }
 
-exports.getPlayer = async (req, res) => {
+export const getPlayer = async (req: Request, res: Response) => {
     const { id } = req.params
     try {
         const r = await db
@@ -42,10 +42,10 @@ exports.getPlayer = async (req, res) => {
     }
 }
 
-exports.addPlayer = async (req, res) => {
+export const addPlayer = async (req: Request, res: Response) => {
     const { Player, Team, Salary } = req.body
 
-    validate(Player, Team, Salary)
+    validate(Player, Team, Salary, res)
 
     const id = nanoid(10)
     const doc = { Player, Team, Salary, ID: id }
@@ -61,11 +61,11 @@ exports.addPlayer = async (req, res) => {
     }
 }
 
-exports.updatePlayer = async (req, res) => {
+export const updatePlayer = async (req: Request, res: Response) => {
     const { id } = req.params
     const { Player, Team, Salary } = req.body
 
-    validate(Player, Team, Salary)
+    validate(Player, Team, Salary, res)
 
     const doc = { Player, Team, Salary, ID: id }
 
@@ -80,7 +80,7 @@ exports.updatePlayer = async (req, res) => {
     }
 }
 
-exports.deletePlayer = async (req, res) => {
+export const deletePlayer = async (req: Request, res: Response) => {
     const { id } = req.params
 
     try {
@@ -94,7 +94,7 @@ exports.deletePlayer = async (req, res) => {
     }
 }
 
-const validate = (Player, Team, Salary) => {
+const validate = (Player: string, Team: string, Salary: string, res: Response) => {
     if (typeof Player !== "string") {
         return res
             .status(404)

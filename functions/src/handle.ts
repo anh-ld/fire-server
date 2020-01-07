@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import nanoid from 'nanoid'
 import {db} from './initialize'
 import {Request, Response} from 'express'

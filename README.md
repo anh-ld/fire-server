@@ -5,10 +5,12 @@
 ### Routes
 
     GET     /players
+    GET     /players?search={search_query}
+    GET     /players?sort={player_asc || player_desc || salary_asc || salary_desc}
     POST    /players
-    GET     /players/:id
-    PUT     /players/:id
-    DELETE  /players/:id
+    GET     /players/{id}
+    PUT     /players/{id}
+    DELETE  /players/{id}
 
 ## Populate data to Firestore
 

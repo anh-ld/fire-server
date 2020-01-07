@@ -7,6 +7,7 @@ export const home = (req: Request, res: Response) => {
 }
 
 export const getPlayers = async (req: Request, res: Response) => {
+    const {search, sort} = req.query
     let players: any = []
 
     try {
@@ -17,7 +18,10 @@ export const getPlayers = async (req: Request, res: Response) => {
         })
 
         Promise.all(promises)
-            .then(() => res.status(200).json({ status: "success", data: players }))
+            .then(() => {
+                const result = query(players, search, sort)
+                return res.status(200).json({ status: "success", result })
+            })
             .catch(e => res.status(404).json({ status: "fail", data: {} }))
     } catch (e) {
         return res.status(404).json({ status: "fail", data: {} })
@@ -126,3 +130,20 @@ const validate = (Player: string, Team: string, Salary: string, res: Response) =
             .json({ status: "fail", data: { title: "Missing Salary" } })
     }
 }
+
+const query = (data: any, search: string, sort: string) => {
+    let result: Array<any> = data
+
+    if (search) {
+        result = data.filter((item: any) => item.Player.match(new RegExp(search, 'ig')))
+    }
+
+    if (sort) {
+        const [attr, type] = sort.split('_')
+        if (attr === 'player') { result = result.sort((a, b) => a.Player.localeCompare(b.Player))}
+        if (attr === 'salary') { result = result.sort((a, b) => b.Salary - a.Salary)}
+        if (type === 'desc') { result = result.reverse()}
+    }
+
+    return result
+} 

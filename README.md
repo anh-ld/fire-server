@@ -14,19 +14,20 @@
 
 ## Populate data to Firestore
 
- 1. Get your **Firebase private key** from  *`Your Firebase Project / Settings / Service accounts / Generate new private key`*
+1.  Get your **Firebase private key** from
+    _`Your Firebase Project / Settings / Service accounts / Generate new private key`_
 
- 2. Rename it to *`key.json`*
+2.  Rename it to _`key.json`_
 
- 3. Move it into *`functions/src`*
+3.  Move it into _`functions/src`_
 
-4. Update database rules at *`Your Firebase Project / Database / Rules`*
+4.  Update database rules at _`Your Firebase Project / Database / Rules`_
 
 ```
 allow read, write, update, delete: if true;
 ```
 
- 5. Run commands
+5.  Run commands
 
 ```
 cd functions

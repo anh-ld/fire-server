@@ -1,6 +1,6 @@
 ## Simple REST server using Firebase Functions and Firestore
 
-[Sample Server](https://us-central1-firecast-9b264.cloudfunctions.net/api/)
+[Sample Server](https://us-central1-fir-as-server.cloudfunctions.net/api/)
 
 ### Routes
 
@@ -14,19 +14,19 @@
 
 ## Populate data to Firestore
 
- 1. Get your **Firebase private key** from 
+ 1. Get your **Firebase private key** from  *`Your Firebase Project / Settings / Service accounts / Generate new private key`*
 
-> *Your Firebase Project* / Settings / Service accounts / Generate new private key
+ 2. Rename it to *`key.json`*
 
- 2. Rename it to 
+ 3. Move it into *`functions/src`*
 
-> key.json
+4. Update database rules at *`Your Firebase Project / Database / Rules`*
 
- 3. Move it into this folder
+```
+allow read, write, update, delete: if true;
+```
 
-> functions/src
-
- 4. Run command
+ 5. Run commands
 
 ```
 cd functions
